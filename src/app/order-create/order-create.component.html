@@ -1,0 +1,68 @@
+<div class="border m-2">
+  <div class="row mt-1">
+    <div class="group col-md-6 px-4">
+      <label for="name">Name</label>
+      <input id="name"
+             type="text"
+             class="form-control"
+             placeholder="Name of order"
+             [(ngModel)]="orderToCreate.name"
+             required
+             #name="ngModel"
+             [class.input-validation]="name.invalid && (name.dirty || name.touched) && name.errors?.required"/>
+    </div>
+
+    <div class="group col-md-6 px-4">
+      <label for="price">Price</label>
+      <input id="price"
+             type="number"
+             class="form-control"
+             placeholder="0"
+             #price="ngModel"
+             appCustomMin customMin="1"
+             [class.input-validation]="price.invalid && (price.dirty || price.touched) && price.errors?.customMinError"
+             [(ngModel)]="orderToCreate.price"/>
+
+      <div *ngIf="price.invalid && (price.touched || price.dirty)">
+        <div *ngIf="price.errors" class="alert-light">
+          <small *ngFor="let error of transformValidationErrorsToArray(price.errors)">
+            {{error}}
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="group col-md-6 px-4">
+      <label for="surname">Surname</label>
+      <input id="surname"
+             type="text"
+             class="form-control"
+             placeholder="Surname of customer"
+             [(ngModel)]="orderToCreate.customerSurname">
+    </div>
+    <div class="group col-md-6 px-4">
+      <label for="phoneNumber">Phone number</label>
+      <input id="phoneNumber"
+             type="number"
+             class="form-control"
+             placeholder="Phone number"
+             [(ngModel)]="orderToCreate.customerPhoneNumber">
+    </div>
+  </div>
+  <div class="row mt-1">
+    <label for="description" class="pl-4">Description</label>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-10 pl-4 pb-4">
+      <input id="description"
+             type="number"
+             class="form-control"
+             placeholder="Description"
+             [(ngModel)]="orderToCreate.description">
+    </div>
+    <div class="col-md-2">
+      <button type="button" (click)="createOrder()" class="btn btn-primary">Create</button>
+    </div>
+  </div>
+</div>
