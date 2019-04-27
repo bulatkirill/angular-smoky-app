@@ -11,6 +11,10 @@ import {FormsModule} from '@angular/forms';
 import {CustomMaxDirective} from './directives/custom-max.directive';
 import {CustomMinDirective} from './directives/custom-min.directive';
 import {ValidationErrorService} from './services/ValidationErrorService';
+import {ReservationsComponent} from './reservations/reservations.component';
+import {ReservationApiService} from './api/service/ReservationApiService';
+import {HttpClientModule} from '@angular/common/http';
+import {Configuration} from './configuration/WebApiConfiguration';
 
 @NgModule({
   declarations: [
@@ -20,15 +24,19 @@ import {ValidationErrorService} from './services/ValidationErrorService';
     OrdersComponent,
     OrderCreateComponent,
     CustomMaxDirective,
-    CustomMinDirective
+    CustomMinDirective,
+    ReservationsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    ValidationErrorService
+    ValidationErrorService,
+    ReservationApiService,
+    Configuration
   ],
   bootstrap: [AppComponent]
 })
